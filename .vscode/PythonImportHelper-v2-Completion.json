@@ -1,0 +1,141 @@
+[
+    {
+        "label": "tkinter",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "messagebox",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "init_db",
+        "importPath": "db",
+        "description": "db",
+        "isExtraImport": true,
+        "detail": "db",
+        "documentation": {}
+    },
+    {
+        "label": "insert_item",
+        "importPath": "db",
+        "description": "db",
+        "isExtraImport": true,
+        "detail": "db",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_items",
+        "importPath": "db",
+        "description": "db",
+        "isExtraImport": true,
+        "detail": "db",
+        "documentation": {}
+    },
+    {
+        "label": "sqlite3",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sqlite3",
+        "description": "sqlite3",
+        "detail": "sqlite3",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "get_app_dir",
+        "importPath": "utils",
+        "description": "utils",
+        "isExtraImport": true,
+        "detail": "utils",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "PocApp",
+        "kind": 6,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "class PocApp:\n    def __init__(self, root):\n        self.root = root\n        self.root.title(\"POC App\")\n        self.root.geometry(\"400x300\")\n        # Input\n        self.entry = tk.Entry(root, width=40)\n        self.entry.pack(pady=10)\n        # Save button\n        self.save_btn = tk.Button(root, text=\"Save\", command=self.save_item)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "get_connection",
+        "kind": 2,
+        "importPath": "db",
+        "description": "db",
+        "peekOfCode": "def get_connection():\n    return sqlite3.connect(DB_PATH)\ndef init_db():\n    conn = get_connection()\n    cursor = conn.cursor()\n    cursor.execute(\"\"\"\n        CREATE TABLE IF NOT EXISTS items (\n            id INTEGER PRIMARY KEY AUTOINCREMENT,\n            value TEXT NOT NULL\n        )",
+        "detail": "db",
+        "documentation": {}
+    },
+    {
+        "label": "init_db",
+        "kind": 2,
+        "importPath": "db",
+        "description": "db",
+        "peekOfCode": "def init_db():\n    conn = get_connection()\n    cursor = conn.cursor()\n    cursor.execute(\"\"\"\n        CREATE TABLE IF NOT EXISTS items (\n            id INTEGER PRIMARY KEY AUTOINCREMENT,\n            value TEXT NOT NULL\n        )\n    \"\"\")\n    conn.commit()",
+        "detail": "db",
+        "documentation": {}
+    },
+    {
+        "label": "insert_item",
+        "kind": 2,
+        "importPath": "db",
+        "description": "db",
+        "peekOfCode": "def insert_item(value):\n    conn = get_connection()\n    cursor = conn.cursor()\n    cursor.execute(\"INSERT INTO items (value) VALUES (?)\", (value,))\n    conn.commit()\n    conn.close()\ndef fetch_items():\n    conn = get_connection()\n    cursor = conn.cursor()\n    cursor.execute(\"SELECT value FROM items ORDER BY id DESC\")",
+        "detail": "db",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_items",
+        "kind": 2,
+        "importPath": "db",
+        "description": "db",
+        "peekOfCode": "def fetch_items():\n    conn = get_connection()\n    cursor = conn.cursor()\n    cursor.execute(\"SELECT value FROM items ORDER BY id DESC\")\n    rows = cursor.fetchall()\n    conn.close()\n    return [r[0] for r in rows]",
+        "detail": "db",
+        "documentation": {}
+    },
+    {
+        "label": "DB_PATH",
+        "kind": 5,
+        "importPath": "db",
+        "description": "db",
+        "peekOfCode": "DB_PATH = os.path.join(get_app_dir(), \"poc_app.db\")\ndef get_connection():\n    return sqlite3.connect(DB_PATH)\ndef init_db():\n    conn = get_connection()\n    cursor = conn.cursor()\n    cursor.execute(\"\"\"\n        CREATE TABLE IF NOT EXISTS items (\n            id INTEGER PRIMARY KEY AUTOINCREMENT,\n            value TEXT NOT NULL",
+        "detail": "db",
+        "documentation": {}
+    },
+    {
+        "label": "get_app_dir",
+        "kind": 2,
+        "importPath": "utlity",
+        "description": "utlity",
+        "peekOfCode": "def get_app_dir():\n    if getattr(sys, 'frozen', False):\n        return os.path.dirname(sys.executable)\n    return os.path.dirname(os.path.abspath(__file__))",
+        "detail": "utlity",
+        "documentation": {}
+    }
+]

@@ -1,0 +1,3 @@
+([('app',
+   '/Users/sanmeshpatwa/Documents/bizpay-office/poc/poc_app/dist/app',
+   'EXECUTABLE')],)
